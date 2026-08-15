@@ -110,7 +110,10 @@
             elements.career.disabled = false;
         } catch (error) {
             console.error(error);
-            showMessage("The application server could not be reached. Start it with: python app.py", "error");
+            showMessage(
+                "The application server could not be reached. Please try again later.",
+                "error"
+            );        
         }
     }
 
