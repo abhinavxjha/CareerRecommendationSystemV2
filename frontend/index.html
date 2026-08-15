@@ -11,25 +11,35 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Onest:wght@100..900&family=Orbitron:wght@400..900&family=Outfit&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar">
-        <a class="titlen" href="#inputsection">CareerRecommendationSystem</a>
+        <a class="titlen" href="#inputsection">Career Recommendation System</a>
     </nav>
 
     <main>
         <section id="inputsection">
             <div class="inputmainclass">
-                <h1 id="heading">Welcome To Your Career Analysis</h1>
+                <h1 id="heading">Welcome To Your </h1><h1 id="heading1"> Career Analysis</h1>
+                <h3 id="subhead">Discover the best career path for you with our CareerRecommendation</h3>
                 <div class="inputmainclass1">
                     <div id="resumeinput" class="resumeinputclass">
+                        <img id="uplogo" src="\assets\fileup.png" alt="Upload Logo">
                         <h2 id="resumein">Upload Your Resume</h2>
+                        <h3 class="desc">Upload your resume in PDF format and
+                            let us analyze your skills.</h3>
                         <input type="file" id="file-upload" name="user-file" hidden>
                         <label for="file-upload" id="file-upload-label">Upload File</label>
                     </div>
 
                     <div id="skillinput" class="skillinputclass">
+                        <img id="penlogo" src="\assets\pen.png" alt="Write Skills">
                         <h2 id="skillin">Enter Your Skills</h2>
+                        <h3 class="desc">Enter your skills manually to get
+                            personalized career recommendations.</h3>
                         <input id="skillinputbar" type="text" placeholder="Enter Your Skills">
                         <button id="skillinputbtn" type="button">Submit</button>
                     </div>
@@ -40,7 +50,7 @@
         <section id="careerinput">
             <h2 id="careerhead">Enter Your Desired Career</h2>
             <div class="inputcareer">
-                <form>
+                <form id="carin">
                     <select id="careerinputbar" name="Career" disabled>
                         <option value="">Loading careers...</option>
                     </select>
