@@ -3,6 +3,17 @@ from pathlib import Path
 
 import pdfplumber
 from flask import Flask, jsonify, request, send_from_directory
+from modules.helpers import (
+    skill_gap_analysis,
+    readiness_score,
+    career_matching,
+    course_recommendation,
+    get_required_skills,
+    calculate_match_percentage,
+    extract_skills,
+    skills_list,
+    text_from_pdf,
+)
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -45,13 +56,14 @@ def score_careers(user_skills: list[str]) -> list[dict]:
     user_set = {normalise(skill) for skill in user_skills}
     results = []
     for career, required in CAREERS_BY_NAME.items():
+        # Use the helper function to calculate match percentage
+        score = calculate_match_percentage(required, user_skills)
         matched = [skill for skill in required if normalise(skill) in user_set]
-        score = round(100 * len(matched) / len(required), 2) if required else 0
         results.append({
             "career": career,
             "skills": required,
             "matched_skills": matched,
-            "score": score,
+            "score": round(score, 2),
         })
     return sorted(results, key=lambda item: item["score"], reverse=True)
 
@@ -93,12 +105,19 @@ def build_analysis(user_skills: list[str], target_career: str) -> dict:
 
 
 def skills_from_resume(resume) -> list[str]:
+    # Save the uploaded file temporarily and use helper function to extract text
     text = ""
     with pdfplumber.open(resume) as pdf:
         for page in pdf.pages:
             text += (page.extract_text() or "") + "\n"
-    lowered = text.lower()
-    return unique_skills([skill for skill in ALL_SKILLS if normalise(skill) in lowered])
+    
+    # Use the helper function to extract skills from the text
+    all_skills_list = skills_list({
+        "skill": ALL_SKILLS
+    })
+    extracted = extract_skills(text.lower(), all_skills_list)
+    
+    return unique_skills(extracted)
 
 
 @app.get("/")
