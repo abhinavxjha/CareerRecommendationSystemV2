@@ -161,7 +161,7 @@
             ? `<p>${missing.map(escapeHtml).join(" • ")}</p><small>${missing.length} skill(s) to develop</small>`
             : "<p>You have every listed skill for this career. Great work!</p>";
         elements.gaugeValue.innerHTML = `${data.readiness_score.toFixed(1)}<small>%</small>`;
-        elements.readinessMessage.textContent = data.readiness_score >= 80 ? "Excellent readiness!" : data.readiness_score >= 50 ? "You are on the right track." : "Focus on the missing skills below.";
+        // elements.readinessMessage.textContent = data.readiness_score >= 80 ? "Excellent readiness!" : data.readiness_score >= 50 ? "You are on the right track." : "Focus on the missing skills below.";
         elements.matchEmpty.hidden = topFive.length > 0;
         elements.bestMatch.innerHTML = topFive.length
             ? `<strong>Best match:</strong> ${escapeHtml(topFive[0].career)} <span>${topFive[0].score.toFixed(1)}% match</span>`
